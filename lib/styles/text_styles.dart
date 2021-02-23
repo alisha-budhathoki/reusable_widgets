@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class TextStyles{
   static const _base = TextStyle(
     color: Palette.black,
-    // fontFamily: AppConfig.fontFamily,
   );
 
   static final headline1 = _base.copyWith(
@@ -37,7 +36,17 @@ class TextStyles{
 
   static final headline6 = _base.copyWith(
     fontSize: 11.0,
-    color: Palette.darkFaded,
+    color: Palette.black,
+    fontWeight: FontWeight.w200,
+  );
+  static final caption = _base.copyWith(
+    fontSize: 11.0,
+    color: Palette.black,
+    fontWeight: FontWeight.w200,
+  );
+  static final subtitle2 = _base.copyWith(
+    fontSize: 11.0,
+    color: Palette.black,
     fontWeight: FontWeight.w200,
   );
 }

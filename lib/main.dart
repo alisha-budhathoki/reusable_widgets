@@ -1,6 +1,11 @@
+import 'package:class_room/styles/app_themes.dart';
 import 'package:class_room/styles/color_pallette.dart';
+import 'package:class_room/styles/style_extension.dart';
+import 'package:class_room/styles/text_styles.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,67 +18,11 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: appName,
-      theme: ThemeData(
-        // Define the default brightness and colors.
-        primaryColor: Palette.colorPrimary,
-        primaryColorDark: Palette.colorSecondary,
-        primaryColorLight: Palette.colorPrimaryDim,
-        accentColor: Palette.colorPrimary,
-        splashColor: Colors.transparent,
-        errorColor: Palette.errorRed,
-        indicatorColor: Palette.colorPrimary,
-        visualDensity: VisualDensity.standard,
-        accentColorBrightness: Brightness.dark,
-        primaryColorBrightness: Brightness.light,
-        // Define the default font family.
-        // fontFamily: 'Georgia',
-
-        // Define the default TextTheme. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
-        textTheme: _textTheme,
-      ),
+      theme: AppThemes.light,
       home: MyHomePage(
         title: appName,
       ),
     );
   }
-static TextTheme get _textTheme =>TextTheme(
-  headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-  headline6: TextStyle(fontSize: 56.0, fontStyle: FontStyle.italic),
-  bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-);
-}
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-
-  MyHomePage({Key key, @required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Container(
-          color: Theme.of(context).accentColor,
-          child: Text(
-            'Text with a background color',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ),
-      ),
-      floatingActionButton: Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme:
-          Theme.of(context).colorScheme.copyWith(secondary: Colors.yellow),
-        ),
-        child: FloatingActionButton(
-          onPressed: null,
-          child: Icon(Icons.add),
-        ),
-      ),
-    );
-  }
 }
