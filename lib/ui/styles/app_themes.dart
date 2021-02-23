@@ -1,6 +1,6 @@
-import 'package:class_room/styles/text_styles.dart';
+import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:class_room/styles/style_extension.dart';
+import 'package:class_room/ui/styles/style_extension.dart';
 
 import 'color_pallette.dart';
 
