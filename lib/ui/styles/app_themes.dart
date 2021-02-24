@@ -1,3 +1,4 @@
+import 'package:class_room/core/constants/configs.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
@@ -18,8 +19,7 @@ class AppThemes {
         accentColorBrightness: Brightness.dark,
         primaryColorBrightness: Brightness.light,
         // Define the default font family.
-        // fontFamily: 'Georgia',
-
+        fontFamily: AppConfig.fontFamily,
         // Define the default TextTheme. Use this to specify the default
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: _textTheme,
@@ -42,6 +42,7 @@ class AppThemes {
         headline6: TextStyles.headline6,
         caption: TextStyles.caption,
         subtitle2: TextStyles.subtitle2
+
         // subtitle: TextStyle(fontSize: 14.0),
       );
 }

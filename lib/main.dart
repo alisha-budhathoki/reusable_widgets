@@ -1,3 +1,4 @@
+import 'package:class_room/core/constants/configs.dart';
 import 'package:class_room/ui/styles/app_themes.dart';
 import 'package:class_room/ui/styles/color_pallette.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
     final appName = 'Custom Themes';
 
     return MaterialApp(
-      title: appName,
+      title: AppConfig.appName,
       theme: AppThemes.light,
       home: MyHomePage(
-        title: appName,
+        title: AppConfig.appName,
       ),
     );
   }

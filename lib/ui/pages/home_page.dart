@@ -1,5 +1,6 @@
 import 'package:class_room/ui/styles/color_pallette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
+import 'package:class_room/ui/widgets/common/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
@@ -13,25 +14,74 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyles.subtitle2.withColor(Palette.white).thin,
+        ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            color: Palette.neutralGrey,
-            child: Text(
-              'Text with a background color',
-              style: TextStyles.headline1.withColor(Palette.white).thin,
-              // style: Theme.of(context).textTheme.headline1,
-            ),
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  // barrierDismissible: false,
+                  child: new AllDialogs(
+                    alertTitle: "Course by",
+                    firstContent: "Instructor",
+                    secondContent: "School Admin",
+                    thirdContent: "Co-ordinator",
+                    namesInstructor: ["Ravi", "Ravina", "Ravi"],
+                    namesSAdmin: ["Salma"],
+                    namesCoordinator: ["Aakash"],
+                  ));
+            },
+            child: Text('Get alert dialog 1',style:TextStyles.headline1.withColor(Palette.colorPrimary).thin),
           ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
-            ),
-          )
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 2'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 3'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 4'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 5'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 6'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              // Utility.getInstance().showAlertDialog(
+              //     context, 'Rewind ', 'You will never be satisfied.');
+            },
+            child: Text('Get alert dialog 7'),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
