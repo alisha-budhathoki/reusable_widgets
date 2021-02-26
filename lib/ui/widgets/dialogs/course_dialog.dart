@@ -23,9 +23,9 @@ class CourseDialog extends StatelessWidget {
         child: ListBody(
           children: <Widget>[
             CourseDialogContent(firstContent, namesInstructor),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
             CourseDialogContent(secondContent, namesSAdmin),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
             CourseDialogContent(thirdContent, namesCoordinator),
           ],
         ),

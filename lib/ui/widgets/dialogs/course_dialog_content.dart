@@ -15,13 +15,13 @@ class CourseDialogContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-            width: 120,
+            width: 100,
             child: Text(
               firstContent,
               style: TextStyles.headline4.medium,
             )),
         Container(
-          width: 100,
+          width: 90,
           // color: Colors.blue,
           child: Wrap(
             children: getTexts(namesInstructor),
@@ -40,7 +40,7 @@ class CourseDialogContent extends StatelessWidget {
           return MapEntry(
               i,
               Text(
-                isLast ? element : element + ",",
+                isLast ? element : element + ", ",
                 style: TextStyles.headline4.normal,
               ));
         })
