@@ -23,7 +23,7 @@ class GlobalDialog  extends StatelessWidget {
             onTap: (){
               Navigator.of(context).pop();
             },
-            child: Text('Dismiss', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
+            child: Text('DISMISS', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
       ),
       ],
     );
