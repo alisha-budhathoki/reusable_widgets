@@ -1,40 +1,35 @@
-import 'package:flutter/cupertino.dart';
+import 'package:class_room/ui/styles/text_styles.dart';
+import 'package:class_room/ui/widgets/common/global_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:class_room/ui/styles/style_extension.dart';
+import 'course_dialog_content.dart';
 
 class CourseDialog extends StatelessWidget {
+  final String alertTitle;
   final String firstContent;
   final String secondContent;
   final String thirdContent;
   final List<String> namesInstructor;
+  final List<String> namesCoordinator;
+  final List<String> namesSAdmin;
 
-  CourseDialog(
-      this.firstContent, this.secondContent, this.thirdContent, this.namesInstructor);
+  const CourseDialog({Key key, this.alertTitle, this.firstContent, this.secondContent, this.thirdContent, this.namesInstructor, this.namesCoordinator, this.namesSAdmin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 120, child: Text(firstContent)),
-        Container(
-          width: 100,
-          // color: Colors.blue,
-          child: Wrap(
-            children: getTexts(namesInstructor),
-          ),
-        )
-      ],
+    return GlobalDialog(
+      title: Text(alertTitle, style: TextStyles.headline3.semibold,),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            CourseDialogContent(firstContent, namesInstructor),
+            SizedBox(height: 10,),
+            CourseDialogContent(secondContent, namesSAdmin),
+            SizedBox(height: 10,),
+            CourseDialogContent(thirdContent, namesCoordinator),
+          ],
+        ),
+      ),
     );
-  }
-
-  List<Widget> getTexts(List<String> names) {
-    // print(names.indexOf(e));
-    return names
-        .asMap()
-        .map((i, element) {
-          final bool isLast = i == names.length - 1;
-          return MapEntry(i, Text(isLast ? element : element + ","));
-        })
-        .values
-        .toList();
   }
 }

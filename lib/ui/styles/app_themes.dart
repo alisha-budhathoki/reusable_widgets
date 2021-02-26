@@ -12,7 +12,6 @@ class AppThemes {
         primaryColorDark: Palette.colorSecondary,
         primaryColorLight: Palette.colorPrimaryDim,
         accentColor: Palette.colorPrimary,
-        splashColor: Colors.transparent,
         errorColor: Palette.errorRed,
         indicatorColor: Palette.colorPrimary,
         visualDensity: VisualDensity.standard,
@@ -40,6 +39,8 @@ class AppThemes {
         headline4: TextStyles.headline4,
         headline5: TextStyles.headline5,
         headline6: TextStyles.headline6,
+        bodyText1: TextStyles.bodyText1,
+        bodyText2: TextStyles.bodyText2,
         caption: TextStyles.caption,
         subtitle2: TextStyles.subtitle2
 

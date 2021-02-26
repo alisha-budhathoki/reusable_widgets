@@ -17,27 +17,35 @@ class TextStyles{
   );
 
   static final headline2 = _base.copyWith(
-    fontSize: 16.0,
+    fontSize: 17.0,
     fontWeight: FontWeight.w600,
   );
 
   static final headline3 = _base.copyWith(
-    fontSize: 14.0,
-    fontWeight: FontWeight.w500,
+    fontSize: 16.0,
   );
 
   static final headline4 = _base.copyWith(
-    fontSize: 13.0,
-    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
   );
 
   static final headline5 = _base.copyWith(
-    fontSize: 12.0,
+    fontSize: 13.0,
     color: Palette.colorPrimary,
     fontWeight: FontWeight.w300,
   );
 
   static final headline6 = _base.copyWith(
+    fontSize: 12.0,
+    color: Palette.black,
+    fontWeight: FontWeight.w200,
+  );
+  static final bodyText1 = _base.copyWith(
+    fontSize: 11.0,
+    color: Palette.black,
+    fontWeight: FontWeight.w200,
+  );
+  static final bodyText2 = _base.copyWith(
     fontSize: 10.0,
     color: Palette.black,
     fontWeight: FontWeight.w200,
@@ -48,7 +56,6 @@ class TextStyles{
     fontWeight: FontWeight.w200,
   );
   static final subtitle2 = _base.copyWith(
-    fontSize: 17.0,
     color: Palette.black,
     fontWeight: FontWeight.w200,
   );

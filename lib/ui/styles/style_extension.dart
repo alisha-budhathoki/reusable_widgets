@@ -5,7 +5,9 @@ import 'color_pallette.dart';
 extension TextStyleExtension on TextStyle{
   TextStyle get thin => copyWith(fontWeight: FontWeight.w300);
   TextStyle get bold => copyWith(fontWeight: FontWeight.w700);
-  TextStyle get normal => copyWith(fontWeight: FontWeight.w500);
+  TextStyle get semibold => copyWith(fontWeight: FontWeight.w600);
+  TextStyle get medium => copyWith(fontWeight: FontWeight.w500);
+  TextStyle get normal => copyWith(fontWeight: FontWeight.w400);
 
   TextStyle get primary => copyWith(color: Palette.colorPrimary);
   TextStyle get primaryDark => copyWith(color: Palette.colorSecondary);

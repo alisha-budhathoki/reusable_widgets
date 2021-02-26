@@ -26,7 +26,7 @@ class Palette {
   static const neutralLightGrey= Color (0xFFEBECEF);
 
   static const secondaryTextBlue = Color(0xFF555B75);
-
+  static const dialogTextColor = Color(0xFF00B795);
   static const primaryTextGrey = neutralGrey;
   static const scaffoldColor = neutralLightGrey;
 }
