@@ -18,7 +18,7 @@ class CourseDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobalDialog(
-      title: Text(alertTitle, style: TextStyles.headline3.semibold,),
+      title: alertTitle,
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
