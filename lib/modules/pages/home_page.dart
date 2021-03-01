@@ -4,6 +4,7 @@ import 'package:class_room/ui/widgets/common/base_widget_dialog.dart';
 import 'package:class_room/ui/widgets/common/global_dialog.dart';
 import 'package:class_room/ui/widgets/dialogs/course_dialog.dart';
 import 'package:class_room/ui/widgets/dialogs/dialog_widgets/confirmation_dialog_widget.dart';
+import 'package:class_room/ui/widgets/dialogs/dialog_widgets/filters_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/core/extensions/dialog_helper.dart';
@@ -77,41 +78,25 @@ class MyHomePage extends StatelessWidget {
           RaisedButton(
             onPressed: () {
               GlobalDialog(
-                title: "Filters",
-                content: Row(
-                children: <Widget>[
-                  StatefulBuilder(builder: (context, _setState) {
-                    return Checkbox(
-                      activeColor: Palette.primaryGreen,
-                      value: true,
-                      onChanged: (bool value) {
-                        print('ssdnj');
-                          // onSelectCourse(course['courseId']);
-                      },
-                    );
-                  }),
-                  Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          // onSelectCourse(course['courseId']);
-                          // print('$course is added');
-                        },
-                        child: Text(
-                          'cname',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ))
-                ],
-              ),
-              baseWidgetDialog: BaseWidgetDialog(firstContent: "abc", secondContent: "cgf",),).openDialog(context);
+                  title: 'Confirmation',
+                  content: FilterWidget(),
+                  // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
+                  baseWidgetDialog: BaseWidgetDialog(
+                    firstContent: "CANCEL",
+                    secondContent: "APPLY",
+                  )
+                // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
+              ).openDialog(context);
             },
             child: Text('Get alert dialog 4'),
           ),
           RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CheckBoxInListView()),
+              );
+            },
             child: Text('Get alert dialog 5'),
           ),
           RaisedButton(
