@@ -75,7 +75,39 @@ class MyHomePage extends StatelessWidget {
             child: Text('Get alert dialog 3'),
           ),
           RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              GlobalDialog(
+                title: "Filters",
+                content: Row(
+                children: <Widget>[
+                  StatefulBuilder(builder: (context, _setState) {
+                    return Checkbox(
+                      activeColor: Palette.primaryGreen,
+                      value: true,
+                      onChanged: (bool value) {
+                        print('ssdnj');
+                          // onSelectCourse(course['courseId']);
+                      },
+                    );
+                  }),
+                  Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          // onSelectCourse(course['courseId']);
+                          // print('$course is added');
+                        },
+                        child: Text(
+                          'cname',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ))
+                ],
+              ),
+              baseWidgetDialog: BaseWidgetDialog(firstContent: "abc", secondContent: "cgf",),).openDialog(context);
+            },
             child: Text('Get alert dialog 4'),
           ),
           RaisedButton(
