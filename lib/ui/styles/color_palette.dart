@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'dart:ui';
@@ -19,13 +18,14 @@ class Palette {
   static const errorRed = Color(0xFFFF5451);
   static const errorLightRed = Color(0xFFFFDCDB);
 
-  static const warningYellow= Color(0xFFFEBE4E);
+  static const warningYellow = Color(0xFFFEBE4E);
   static const warningLightYellow = Color(0xFFFFF3DD);
 
   static const neutralGrey = Color(0xFF707070);
-  static const neutralLightGrey= Color (0xFFEBECEF);
-
+  static const neutralLightGrey = Color(0xFFEBECEF);
+  static const darkTextColor = Color(0xFF182929);
   static const secondaryTextBlue = Color(0xFF555B75);
+  static const textMildBlue = Color(0xFF3C4361);
   static const dialogTextColor = Color(0xFF00B795);
   static const primaryTextGrey = neutralGrey;
   static const scaffoldColor = neutralLightGrey;

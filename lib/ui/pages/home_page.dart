@@ -1,4 +1,4 @@
-import 'package:class_room/ui/styles/color_pallette.dart';
+import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:class_room/ui/widgets/common/dialog.dart';
 import 'package:class_room/ui/widgets/dialogs/course_dialog.dart';
@@ -47,7 +47,8 @@ class MyHomePage extends StatelessWidget {
               //       namesCoordinator: ["Aakash"],
               //     ));
             },
-            child: Text('Get alert dialog 1',style:TextStyles.headline1.withColor(Palette.colorPrimary).thin),
+            child: Text('Get alert dialog 1',style:TextStyles.headline2),
+            // child: Text('Get alert dialog 1',style:TextStyles.headline1.withColor(Palette.black).thin),
           ),
           RaisedButton(
             onPressed: () {

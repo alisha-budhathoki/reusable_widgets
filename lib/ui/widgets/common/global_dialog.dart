@@ -1,4 +1,4 @@
-import 'package:class_room/ui/styles/color_pallette.dart';
+import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

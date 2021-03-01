@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'color_pallette.dart';
+import 'color_palette.dart';
 
 extension TextStyleExtension on TextStyle{
   TextStyle get thin => copyWith(fontWeight: FontWeight.w300);
