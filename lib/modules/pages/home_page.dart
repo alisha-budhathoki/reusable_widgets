@@ -48,8 +48,13 @@ class MyHomePage extends StatelessWidget {
                 title: 'Confirmation',
                 content: ConfirmationDialogWidget(),
                 // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                baseWidgetDialog:
-                    BaseWidgetDialog(firstContent: "REVIEW", secondContent: "SUBMIT",onPressedFirst: abc(), onPressedSecond: xyz(),padding: 10,),
+                baseWidgetDialog: BaseWidgetDialog(
+                  firstContent: "REVIEW",
+                  secondContent: "SUBMIT",
+                  onPressedFirst: abc(),
+                  onPressedSecond: xyz(),
+                  padding: 10,
+                ),
               ).openDialog(context);
             },
             child: Text('Get alert dialog 2'),
@@ -57,13 +62,15 @@ class MyHomePage extends StatelessWidget {
           RaisedButton(
             onPressed: () {
               GlobalDialog(
-                title: 'Confirmation',
-                content: ConfirmationDialogWidget(),
-                // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                baseWidgetDialog:
-                  BaseWidgetDialog(firstContent: "SWITCH TO ZOOM",secondContent: "CONTINUE IN PLATFORM",)
-                    // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
-              ).openDialog(context);
+                  title: 'Confirmation',
+                  content: ConfirmationDialogWidget(),
+                  // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
+                  baseWidgetDialog: BaseWidgetDialog(
+                    firstContent: "SWITCH TO ZOOM",
+                    secondContent: "CONTINUE IN PLATFORM",
+                  )
+                  // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
+                  ).openDialog(context);
             },
             child: Text('Get alert dialog 3'),
           ),
