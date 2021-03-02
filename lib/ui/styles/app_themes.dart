@@ -16,7 +16,6 @@ class AppThemes {
         visualDensity: VisualDensity.standard,
         accentColorBrightness: Brightness.dark,
         primaryColorBrightness: Brightness.light,
-        fontFamily: AppConfig.fontFamily,
         textTheme: _textTheme,
       );
 
@@ -33,6 +32,7 @@ class AppThemes {
       headline6: TextStyles.headline6,
       bodyText1: TextStyles.bodyText1,
       bodyText2: TextStyles.bodyText2,
+      button: TextStyles.button,
       caption: TextStyles.caption,
       subtitle2: TextStyles.subtitle2
 

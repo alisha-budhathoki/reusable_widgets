@@ -1,4 +1,6 @@
+import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:class_room/ui/styles/style_extension.dart';
 
 class FilterWidget extends StatefulWidget {
   List<String> items;
@@ -31,7 +33,7 @@ class _FilterWidgetState extends State<FilterWidget> {
         itemBuilder: (context, index) {
           return CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
-            title: Text(items[index]),
+            title: Text(items[index], style: TextStyles.headline3.normal,),
             value: _isChecked[index],
             onChanged: (val) {
               setState(

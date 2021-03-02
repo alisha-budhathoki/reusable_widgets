@@ -25,4 +25,12 @@ flutter:
       fonts:
         - asset: assets/fonts/SourceSansPro-Bold.ttf
         - asset: assets/fonts/SourceSansPro-Regular.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf
 
+#    - family: OpenSans
+#      fonts:
+#        - asset: assets/fonts/OpenSans-Bold.ttf
+#        - asset: assets/ fonts/OpenSans-Regular.ttf
