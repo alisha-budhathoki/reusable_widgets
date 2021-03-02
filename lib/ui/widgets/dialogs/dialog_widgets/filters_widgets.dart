@@ -1,47 +1,45 @@
 import 'package:flutter/material.dart';
 
 class FilterWidget extends StatefulWidget {
+  List<String> items;
+  FilterWidget(this.items);
+
   @override
-  _FilterWidgetState createState() => _FilterWidgetState();
+  _FilterWidgetState createState() => _FilterWidgetState(items);
 }
 
 class _FilterWidgetState extends State<FilterWidget> {
-  List<String> _items = [
-    "Not Submitted",
-    "Over Due",
-    "Completed",
-  ];
-
   List<bool> _isChecked;
+  List<String> items;
+  _FilterWidgetState(this.items);
 
   @override
   void initState() {
     super.initState();
-    _isChecked = List<bool>.filled(_items.length, false);
+    _isChecked = List<bool>.filled(items.length, false);
     //It creates a list of the given length(first parameter) and fill initial value(second parameter) all list.
   }
 //todo: content adjustment with the title of dialog
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 200,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(), //<--here
         shrinkWrap: true,
-        itemCount: _items.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
-          return Container(
-            child: CheckboxListTile(
-              controlAffinity: ListTileControlAffinity.leading,
-              title: Text(_items[index]),
-              value: _isChecked[index],
-              onChanged: (val) {
-                setState(
-                      () {
-                    _isChecked[index] = val;
-                  },
-                );
-              },
-            ),
+          return CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            title: Text(items[index]),
+            value: _isChecked[index],
+            onChanged: (val) {
+              setState(
+                    () {
+                  _isChecked[index] = val;
+                },
+              );
+            },
           );
         },
       ),

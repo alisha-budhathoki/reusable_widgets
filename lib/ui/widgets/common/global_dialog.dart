@@ -17,7 +17,7 @@ class GlobalDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
+      title: title==null?Container():Text(
         title,
         style: TextStyles.headline3.semibold,
       ),

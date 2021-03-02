@@ -4,6 +4,7 @@ import 'package:class_room/ui/widgets/common/base_widget_dialog.dart';
 import 'package:class_room/ui/widgets/common/global_dialog.dart';
 import 'package:class_room/ui/widgets/dialogs/course_dialog.dart';
 import 'package:class_room/ui/widgets/dialogs/dialog_widgets/confirmation_dialog_widget.dart';
+import 'package:class_room/ui/widgets/dialogs/dialog_widgets/filter_advanced_widget.dart';
 import 'package:class_room/ui/widgets/dialogs/dialog_widgets/filters_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,17 @@ import 'package:class_room/ui/styles/style_extension.dart';
 
 class MyHomePage extends StatelessWidget {
   final String title;
+  List<String> assignementStatusList = [
+    "Not Submitted",
+    "Over Due",
+    "Completed",
+  ];
+  List<String> subjectList = [
+    "All",
+    "Machine Learning",
+    "Deep Learning",
+    "Computer Learning"
+  ];
 
   MyHomePage({Key key, @required this.title}) : super(key: key);
 
@@ -79,7 +91,7 @@ class MyHomePage extends StatelessWidget {
             onPressed: () {
               GlobalDialog(
                   title: 'Confirmation',
-                  content: FilterWidget(),
+                  content: FilterWidget(assignementStatusList),
                   // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
                   baseWidgetDialog: BaseWidgetDialog(
                     firstContent: "CANCEL",
@@ -92,15 +104,30 @@ class MyHomePage extends StatelessWidget {
           ),
           RaisedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CheckBoxInListView()),
-              );
+              GlobalDialog(
+                  title: 'Confirmation',
+                  content: FilterWidget(subjectList),
+                  // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
+                  baseWidgetDialog: BaseWidgetDialog(
+                    firstContent: "CANCEL",
+                    secondContent: "APPLY",
+                  )
+                // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
+              ).openDialog(context);
             },
             child: Text('Get alert dialog 5'),
           ),
           RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              GlobalDialog(
+                  content: FilterAdvancedWidget(),
+                  baseWidgetDialog: BaseWidgetDialog(
+                    firstContent: "CANCEL",
+                    secondContent: "APPLY",
+                  )
+                // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
+              ).openDialog(context);
+            },
             child: Text('Get alert dialog 6'),
           ),
           RaisedButton(
