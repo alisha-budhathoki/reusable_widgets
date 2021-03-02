@@ -29,7 +29,7 @@ class BaseWidgetDialog extends StatelessWidget {
               // Navigator.of(context).pop();
             },
             child: FlatButton(
-              child: Text(firstContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
+              child: firstContent == null? Container():Text(firstContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
             )),
         GestureDetector(
             onTap: () {
@@ -37,7 +37,7 @@ class BaseWidgetDialog extends StatelessWidget {
               // Navigator.of(context).pop();
             },
             child:  FlatButton(
-              child: Text(secondContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
+              child: secondContent == null? Container():Text(secondContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
             )),
       ],
     );

@@ -13,6 +13,7 @@ import 'package:class_room/ui/styles/style_extension.dart';
 
 class MyHomePage extends StatelessWidget {
   final String title;
+  final String messageDialog= "Do you want to leave the platfrom to join the online class in zoom or continue in the";
   List<String> assignementStatusList = [
     "Not Submitted",
     "Over Due",
@@ -42,19 +43,19 @@ class MyHomePage extends StatelessWidget {
         children: [
           RaisedButton(
             onPressed: () {
-              CourseDialog(
-                alertTitle: "Course by",
-                firstContent: "Instructor",
-                secondContent: "School Admin",
-                thirdContent: "Co-ordinator",
-                namesInstructor: ["Ravi", "Ravina", "Ravi", "Manoj", "Kripa"],
-                namesSAdmin: ["Salma"],
-                namesCoordinator: ["Aakash"],
+              GlobalDialog(
+                title: 'Confirmation',
+                content: CourseDialog(),
+                // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
+                baseWidgetDialog: BaseWidgetDialog(
+                  firstContent: null,
+                  secondContent: "DISMISS",
+                  onPressedFirst: abc(),
+                  onPressedSecond: xyz(),
+                  padding: 10,
+                ),
               ).openDialog(context);
-            },
-            child: Text('Get alert dialog 1', style: TextStyles.headline2),
-            // child: Text('Get alert dialog 1',style:TextStyles.headline1.withColor(Palette.black).thin),
-          ),
+            }, child: Text('Get alert dialog 1'),),
           RaisedButton(
             onPressed: () {
               GlobalDialog(
@@ -76,7 +77,7 @@ class MyHomePage extends StatelessWidget {
             onPressed: () {
               GlobalDialog(
                   title: 'Confirmation',
-                  content: ConfirmationDialogWidget(),
+                  content: Text(messageDialog, style: TextStyles.headline4.medium,),
                   // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
                   baseWidgetDialog: BaseWidgetDialog(
                     firstContent: "SWITCH TO ZOOM",
