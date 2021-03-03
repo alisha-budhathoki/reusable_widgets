@@ -37,8 +37,8 @@ class MenuItem extends MenuItemProvider {
 }
 
 class PopupMenu {
-  static var itemWidth = 72.0;
-  static var itemHeight = 65.0;
+  static var itemWidth = 100.0;
+  static var itemHeight = 55.0;
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
   List<MenuItemProvider> items;
@@ -195,14 +195,14 @@ class PopupMenu {
                 left: offset.dx,
                 top: offset.dy,
                 child: Container(
-                  width: menuWidth(),
+                  width: 100,
                   height: menuHeight(),
                   child: Column(
                     children: <Widget>[
                       ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Container(
-                            width: menuWidth(),
+                            width: 100,
                             height: menuHeight(),
                             decoration: BoxDecoration(
                                 color: _backgroundColor,
