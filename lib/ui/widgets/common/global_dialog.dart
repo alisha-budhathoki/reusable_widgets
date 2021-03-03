@@ -11,11 +11,47 @@ class GlobalDialog extends PlatformWidget {
   final EdgeInsets padding;
   final baseWidgetDialog;
 
-   GlobalDialog(
+  GlobalDialog(
       {Key key, this.title, this.content, this.padding, this.baseWidgetDialog});
 
   @override
   Widget build(BuildContext context) {
+    return AlertDialog(
+      title: title == null
+          ? Container()
+          : Text(
+              title,
+              style: TextStyles.headline3.semibold,
+            ),
+      content: content,
+      actions: [
+        FlatButton(
+            onPressed: null,
+            child: Text(
+              'SWITCH TO ZOOM',
+              style: TextStyles.headline4.withColor(Palette.dialogTextColor),
+            )),
+        FlatButton(
+            onPressed: null,
+            child: Text('CONTINUE IN PLATFORM',
+                style:
+                    TextStyles.headline4.withColor(Palette.dialogTextColor))),
+
+        // baseWidgetDialog,
+        // Padding(
+        //   padding: const EdgeInsets.all(10.0),
+        //   child: GestureDetector(
+        //       onTap: (){
+        //         Navigator.of(context).pop();
+        //       },
+        //       child: Text('DISMISS', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
+        // ),
+      ],
+    );
+  }
+
+  @override
+  Widget buildCupertinoWidget(BuildContext context) {
     return AlertDialog(
       title: title == null
           ? Container()
@@ -39,39 +75,14 @@ class GlobalDialog extends PlatformWidget {
   }
 
   @override
-  Widget buildCupertinoWidget(BuildContext context) {
-    return AlertDialog(
-      title: title == null
-          ? Container()
-          : Text(
-        title,
-        style: TextStyles.headline3.semibold,
-      ),
-      content: content,
-      actions: [
-        baseWidgetDialog,
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: GestureDetector(
-        //       onTap: (){
-        //         Navigator.of(context).pop();
-        //       },
-        //       child: Text('DISMISS', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
-        // ),
-      ],
-    );
-
-  }
-
-  @override
   Widget buildMaterialWidget(BuildContext context) {
     return CupertinoAlertDialog(
       title: title == null
           ? Container()
           : Text(
-        title,
-        style: TextStyles.headline3.semibold,
-      ),
+              title,
+              style: TextStyles.headline3.semibold,
+            ),
       content: content,
       actions: [
         baseWidgetDialog,

@@ -14,6 +14,7 @@ import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/adenda_
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/agenda_takeaway_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/feedback_first_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/feedback_second_dialog.dart';
+import 'package:class_room/ui/widgets/popup_dialogs/popup_traingular/popup_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/core/extensions/dialog_helper.dart';
@@ -23,6 +24,8 @@ class MyHomePage extends StatelessWidget {
   final String title;
 
   MyHomePage({Key key, @required this.title}) : super(key: key);
+  PopupMenu menu;
+  GlobalKey btnKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,17 @@ class MyHomePage extends StatelessWidget {
           title,
           style: TextStyles.caption.withColor(Colors.black).thin,
         ),
+        actions: <Widget>[
+          //Setting Overflow action items using PopupMenuButton
+          PopupMenuButton(
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(child: Text('Download')),
+                PopupMenuItem(child: Text('Delete file')),
+              ];
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -156,8 +170,10 @@ class MyHomePage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   GlobalBottomSheet(
-                          title: "Agendas", content: AgendaDialogWidget())
-                      .openBottomDialog(context);
+                      title: "Agendas",
+                      content: AgendaDialogWidget(
+                        listItems: AppConfig.agendaList,
+                      )).openBottomDialog(context);
                 },
                 child: Text('Get bottomsheet dialog2'),
               ),
@@ -186,6 +202,15 @@ class MyHomePage extends StatelessWidget {
                 },
                 child: Text('Get bottomsheet dialog4'),
               ),
+              RaisedButton(
+                onPressed: () {
+                  gotoAnotherDialog(context);
+                },
+                key: btnKey,
+                child: Text(
+                  'Popup',
+                ),
+              ),
             ],
           ),
         ),
@@ -197,8 +222,40 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+
+void stateChanged(bool isShow) {
+  print('menu is ${isShow ? 'showing' : 'closed'}');
 }
 
+void onClickMenu(MenuItemProvider item) {
+  print('Click menu -> ${item.menuTitle}');
+}
+
+void onDismiss() {
+  print('Menu is dismiss');
+}
+
+void gotoAnotherDialog(BuildContext context) {
+  PopupMenu menu = PopupMenu(items: [MenuItem(title: "You are doing well", ),],
+      // onClickMenu: onClickMenu,
+      context: context,
+      // stateChanged: stateChanged,
+      onDismiss: onDismiss);
+  menu.show(widgetKey: btnKey);
+}
+
+void clicked(BuildContext context, menu) {
+  final scaffold = Scaffold.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: Text(menu),
+      action: SnackBarAction(
+          label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
+}
+}
 xyz() => print('xyz function ');
 
 abc() => print('abc function ');
+

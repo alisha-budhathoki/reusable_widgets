@@ -2,6 +2,7 @@ import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
+import 'package:flutter/rendering.dart';
 
 class BaseWidgetDialog extends StatelessWidget {
   final String firstContent, secondContent;
@@ -26,31 +27,20 @@ class BaseWidgetDialog extends StatelessWidget {
           ? MainAxisAlignment.end
           : MainAxisAlignment.center,
       children: [
-        GestureDetector(
-            onTap: () {
-              print('djbjdbs');
-              // onPressedFirst;
-              // Navigator.of(context).pop();
-            },
-            child: FlatButton(
-              child: firstContent == null
-                  ? Container()
-                  : Text(firstContent,
-                      style: TextStyles.headline4
-                          .withColor(Palette.dialogTextColor)),
-            )),
-        GestureDetector(
-            onTap: () {
-              onPressedSecond;
-              // Navigator.of(context).pop();
-            },
-            child: FlatButton(
-              child: secondContent == null
-                  ? Container()
-                  : Text(secondContent,
-                      style: TextStyles.headline4
-                          .withColor(Palette.dialogTextColor)),
-            )),
+        FlatButton(
+          child: firstContent == null
+              ? Container()
+              : Text(firstContent,
+                  style: TextStyles.headline4
+                      .withColor(Palette.dialogTextColor)),
+        ),
+        FlatButton(
+          child: secondContent == null
+              ? Container()
+              : Text(secondContent,
+                  style: TextStyles.headline4
+                      .withColor(Palette.dialogTextColor)),
+        ),
       ],
     );
   }
