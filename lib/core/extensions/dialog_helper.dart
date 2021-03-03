@@ -15,9 +15,9 @@ extension DialogHelper on Widget {
   void openBottomDialog(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       isDismissible: true,
       useRootNavigator: false,
-      isScrollControlled: true,
       builder: (_) =>this,
       // useRootNavigator: false,
       // barrierDismissible: barrierDismissible,

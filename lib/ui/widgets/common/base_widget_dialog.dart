@@ -7,6 +7,7 @@ class BaseWidgetDialog extends StatelessWidget {
   final String firstContent, secondContent;
   final Function onPressedFirst, onPressedSecond;
   final double padding;
+  final bool fromBottomDialog;
 
   const BaseWidgetDialog(
       {Key key,
@@ -14,13 +15,16 @@ class BaseWidgetDialog extends StatelessWidget {
       this.secondContent,
       this.onPressedFirst,
       this.onPressedSecond,
-      this.padding})
+      this.padding,
+      this.fromBottomDialog})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: fromBottomDialog == true
+          ? MainAxisAlignment.end
+          : MainAxisAlignment.center,
       children: [
         GestureDetector(
             onTap: () {
@@ -29,15 +33,23 @@ class BaseWidgetDialog extends StatelessWidget {
               // Navigator.of(context).pop();
             },
             child: FlatButton(
-              child: firstContent == null? Container():Text(firstContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
+              child: firstContent == null
+                  ? Container()
+                  : Text(firstContent,
+                      style: TextStyles.headline4
+                          .withColor(Palette.dialogTextColor)),
             )),
         GestureDetector(
             onTap: () {
               onPressedSecond;
               // Navigator.of(context).pop();
             },
-            child:  FlatButton(
-              child: secondContent == null? Container():Text(secondContent,  style: TextStyles.headline4.withColor(Palette.dialogTextColor)),
+            child: FlatButton(
+              child: secondContent == null
+                  ? Container()
+                  : Text(secondContent,
+                      style: TextStyles.headline4
+                          .withColor(Palette.dialogTextColor)),
             )),
       ],
     );

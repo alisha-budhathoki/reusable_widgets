@@ -21,6 +21,7 @@ class Palette {
   static const warningYellow = Color(0xFFFEBE4E);
   static const warningLightYellow = Color(0xFFFFF3DD);
 
+  static const veryLightGrey = Color(0xFFE7E9E9);
   static const neutralGrey = Color(0xFF707070);
   static const neutralLightGrey = Color(0xFFEBECEF);
   static const darkTextColor = Color(0xFF182929);
