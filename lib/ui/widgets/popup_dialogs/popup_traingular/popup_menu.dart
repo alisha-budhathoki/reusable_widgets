@@ -4,6 +4,7 @@ library popup_menu;
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'triangle_painter.dart';
 
@@ -20,22 +21,20 @@ class MenuItem extends MenuItemProvider {
   TextStyle textStyle;
   TextAlign textAlign;
 
-  MenuItem(
-      { this.title,  this.textStyle, this.textAlign});
+  MenuItem({this.title, this.textStyle, this.textAlign});
 
   @override
   String get menuTitle => title;
 
   @override
   TextStyle get menuTextStyle =>
-      textStyle ?? TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 10.0);
+      textStyle ??
+      TextStyle(
+          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 10.0);
 
   @override
   TextAlign get menuTextAlign => textAlign ?? TextAlign.center;
 }
-
-// typedef MenuClickCallback = Function(MenuItemProvider item);
-// typedef PopupMenuStateChanged = Function(bool isShow);
 
 class PopupMenu {
   static var itemWidth = 72.0;
@@ -43,12 +42,6 @@ class PopupMenu {
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
   List<MenuItemProvider> items;
-
-  /// row count
-  int _row;
-
-  /// col count
-  int _col;
 
   /// The left top point of this menu.
   Offset _offset;
@@ -64,6 +57,7 @@ class PopupMenu {
 
   /// callback
   VoidCallback dismissCallback;
+
   // MenuClickCallback onClickMenu;
   // PopupMenuStateChanged stateChanged;
 
@@ -83,24 +77,19 @@ class PopupMenu {
   bool get isShow => _isShow;
 
   PopupMenu(
-      {
-        // MenuClickCallback onClickMenu,
-        BuildContext context,
-        VoidCallback onDismiss,
-        int maxColumn,
-        Color backgroundColor,
-        Color highlightColor,
-        Color lineColor,
-        // PopupMenuStateChanged stateChanged,
-        List<MenuItemProvider> items}) {
-    // this.onClickMenu = onClickMenu;
+      {BuildContext context,
+      VoidCallback onDismiss,
+      int maxColumn,
+      Color backgroundColor,
+      Color highlightColor,
+      Color lineColor,
+      List<MenuItemProvider> items}) {
     this.dismissCallback = onDismiss;
-    // this.stateChanged = stateChanged;
     this.items = items;
     this._maxColumn = maxColumn ?? 4;
-    this._backgroundColor = backgroundColor ?? Color(0xff232323);
-    this._lineColor = lineColor ?? Color(0xff353535);
-    this._highlightColor = highlightColor ?? Color(0x55000000);
+    this._backgroundColor = Palette.darkTextColor;
+    this._lineColor = Palette.darkTextColor;
+    this._highlightColor = Palette.darkTextColor;
     if (context != null) {
       PopupMenu.context = context;
     }
@@ -125,9 +114,6 @@ class PopupMenu {
 
     Overlay.of(PopupMenu.context).insert(_entry);
     _isShow = true;
-    // if (this.stateChanged != null) {
-    //   this.stateChanged(true);
-    // }
   }
 
   static Rect getWidgetGlobalRect(GlobalKey key) {
@@ -138,13 +124,13 @@ class PopupMenu {
   }
 
   void _calculatePosition(BuildContext context) {
-    _col = _calculateColCount();
-    _row = _calculateRowCount();
     _offset = _calculateOffset(PopupMenu.context);
   }
 
   Offset _calculateOffset(BuildContext context) {
     double dx = _showRect.left + _showRect.width / 2.0 - menuWidth() / 2.0;
+    print('Value here:'+_showRect.left.toString()+"smn"+_showRect.right.toString()+"  "+menuHeight().toString()+"  "+menuWidth().toString());
+    print("bshbd"+dx.toString());
     if (dx < 10.0) {
       dx = 10.0;
     }
@@ -168,27 +154,21 @@ class PopupMenu {
   }
 
   double menuWidth() {
-    return itemWidth * _col;
+    return itemWidth;
   }
 
   // This height exclude the arrow
   double menuHeight() {
-    return itemHeight * _row;
+    return itemHeight;
   }
 
   LayoutBuilder buildPopupMenuLayout(Offset offset) {
     return LayoutBuilder(builder: (context, constraints) {
       return GestureDetector(
-        behavior: HitTestBehavior.translucent,
+        behavior: HitTestBehavior.opaque,
         onTap: () {
           dismiss();
         },
-//        onTapDown: (TapDownDetails details) {
-//          dismiss();
-//        },
-        // onPanStart: (DragStartDetails details) {
-        //   dismiss();
-        // },
         onVerticalDragStart: (DragStartDetails details) {
           dismiss();
         },
@@ -201,13 +181,13 @@ class PopupMenu {
               // triangle arrow
               Positioned(
                 left: _showRect.left + _showRect.width / 2.0 - 7.5,
-                top: _isDown
+                top: false
                     ? offset.dy + menuHeight()
                     : offset.dy - arrowHeight,
                 child: CustomPaint(
                   size: Size(15.0, arrowHeight),
                   painter:
-                  TrianglePainter(isDown: _isDown, color: _backgroundColor),
+                      TrianglePainter(isDown: false, color: _backgroundColor),
                 ),
               ),
               // menu content
@@ -242,118 +222,45 @@ class PopupMenu {
     });
   }
 
-  // 创建行
   List<Widget> _createRows() {
     List<Widget> rows = [];
-    for (int i = 0; i < _row; i++) {
-      Color color =
-      (i < _row - 1 && _row != 1) ? _lineColor : Colors.transparent;
-      Widget rowWidget = Container(
-        decoration:
-        BoxDecoration(border: Border(bottom: BorderSide(color: color))),
-        height: itemHeight,
-        child: Row(
-          children: _createRowItems(i),
-        ),
-      );
+    Color color = Colors.black45;
+    Widget rowWidget = Container(
+      decoration:
+          BoxDecoration(border: Border(bottom: BorderSide(color: color))),
+      height: itemHeight,
+      child: Row(
+        children: _createRowItems(0),
+      ),
+    );
 
-      rows.add(rowWidget);
-    }
+    rows.add(rowWidget);
 
     return rows;
   }
 
-  // 创建一行的item,  row 从0开始算
   List<Widget> _createRowItems(int row) {
-    List<MenuItemProvider> subItems =
-    items.sublist(row * _col, min(row * _col + _col, items.length));
+    List<MenuItemProvider> subItems = items.sublist(0, 1);
     List<Widget> itemWidgets = [];
     int i = 0;
     for (var item in subItems) {
       itemWidgets.add(_createMenuItem(
         item,
-        i < (_col - 1),
+        i < (0),
       ));
-      i++;
     }
-
     return itemWidgets;
-  }
-
-  // calculate row count
-  int _calculateRowCount() {
-    if (items == null || items.length == 0) {
-      debugPrint('error menu items can not be null');
-      return 0;
-    }
-
-    int itemCount = items.length;
-
-    if (_calculateColCount() == 1) {
-      return itemCount;
-    }
-
-    int row = (itemCount - 1) ~/ _calculateColCount() + 1;
-
-    return row;
-  }
-
-  // calculate col count
-  int _calculateColCount() {
-    if (items == null || items.length == 0) {
-      debugPrint('error menu items can not be null');
-      return 0;
-    }
-
-    int itemCount = items.length;
-    if (_maxColumn != 4 && _maxColumn > 0) {
-      return _maxColumn;
-    }
-
-    if (itemCount == 4) {
-      // 4个显示成两行
-      return 2;
-    }
-
-    if (itemCount <= _maxColumn) {
-      return itemCount;
-    }
-
-    if (itemCount == 5) {
-      return 3;
-    }
-
-    if (itemCount == 6) {
-      return 3;
-    }
-
-    return _maxColumn;
-  }
-
-  double get screenWidth {
-    double width = window.physicalSize.width;
-    double ratio = window.devicePixelRatio;
-    return width / ratio;
   }
 
   Widget _createMenuItem(MenuItemProvider item, bool showLine) {
     return _MenuItemWidget(
       item: item,
       showLine: showLine,
-      // clickCallback: itemClicked,
       lineColor: _lineColor,
       backgroundColor: _backgroundColor,
       highlightColor: _highlightColor,
     );
   }
-
-  // void itemClicked(MenuItemProvider item) {
-  //   if (onClickMenu != null) {
-  //     onClickMenu(item);
-  //   }
-  //
-  //   dismiss();
-  // }
 
   void dismiss() {
     if (!_isShow) {
@@ -366,17 +273,11 @@ class PopupMenu {
     if (dismissCallback != null) {
       dismissCallback();
     }
-
-    // if (this.stateChanged != null) {
-    //   this.stateChanged(false);
-    // }
   }
 }
 
 class _MenuItemWidget extends StatefulWidget {
   final MenuItemProvider item;
-
-  // 是否要显示右边的分隔线
   final bool showLine;
   final Color lineColor;
   final Color backgroundColor;
@@ -386,11 +287,11 @@ class _MenuItemWidget extends StatefulWidget {
 
   _MenuItemWidget(
       {this.item,
-        this.showLine = false,
-        this.clickCallback,
-        this.lineColor,
-        this.backgroundColor,
-        this.highlightColor});
+      this.showLine = false,
+      this.clickCallback,
+      this.lineColor,
+      this.backgroundColor,
+      this.highlightColor});
 
   @override
   State<StatefulWidget> createState() {
@@ -456,45 +357,44 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
         ),
       ),
     );
-
   }
-  // {
-  //   if (widget.item.menuImage != null) {
-  //     // image and text
-  //     return Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: <Widget>[
-  //         Container(
-  //           width: 30.0,
-  //           height: 30.0,
-  //           child: widget.item.menuImage,
-  //         ),
-  //         Container(
-  //           height: 22.0,
-  //           child: Material(
-  //             color: Colors.transparent,
-  //             child: Text(
-  //               "widget.item.menuTitle",
-  //               style: widget.item.menuTextStyle,
-  //             ),
-  //           ),
-  //         )
-  //       ],
-  //     );
-  //   } else {
-  //     // only text
-  //     return Container(
-  //       child: Center(
-  //         child: Material(
-  //           color: Colors.transparent,
-  //           child: Text(
-  //             widget.item.menuTitle,
-  //             style: widget.item.menuTextStyle,
-  //             textAlign: widget.item.menuTextAlign,
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //   }
-  // }
+// {
+//   if (widget.item.menuImage != null) {
+//     // image and text
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: <Widget>[
+//         Container(
+//           width: 30.0,
+//           height: 30.0,
+//           child: widget.item.menuImage,
+//         ),
+//         Container(
+//           height: 22.0,
+//           child: Material(
+//             color: Colors.transparent,
+//             child: Text(
+//               "widget.item.menuTitle",
+//               style: widget.item.menuTextStyle,
+//             ),
+//           ),
+//         )
+//       ],
+//     );
+//   } else {
+//     // only text
+//     return Container(
+//       child: Center(
+//         child: Material(
+//           color: Colors.transparent,
+//           child: Text(
+//             widget.item.menuTitle,
+//             style: widget.item.menuTextStyle,
+//             textAlign: widget.item.menuTextAlign,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 }

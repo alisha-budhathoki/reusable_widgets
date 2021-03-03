@@ -211,6 +211,7 @@ class MyHomePage extends StatelessWidget {
                   'Popup',
                 ),
               ),
+              SizedBox(height: 50)
             ],
           ),
         ),
@@ -223,39 +224,44 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-void stateChanged(bool isShow) {
-  print('menu is ${isShow ? 'showing' : 'closed'}');
+  void stateChanged(bool isShow) {
+    print('menu is ${isShow ? 'showing' : 'closed'}');
+  }
+
+  void onClickMenu(MenuItemProvider item) {
+    print('Click menu -> ${item.menuTitle}');
+  }
+
+  void onDismiss() {
+    print('Menu is dismiss');
+  }
+
+  void gotoAnotherDialog(BuildContext context) {
+    PopupMenu menu = PopupMenu(
+        items: [
+          MenuItem(
+            title: "You are doing well",
+          ),
+        ],
+        // onClickMenu: onClickMenu,
+        context: context,
+        // stateChanged: stateChanged,
+        onDismiss: onDismiss);
+    menu.show(widgetKey: btnKey);
+  }
+
+  void clicked(BuildContext context, menu) {
+    final scaffold = Scaffold.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(menu),
+        action: SnackBarAction(
+            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
 }
 
-void onClickMenu(MenuItemProvider item) {
-  print('Click menu -> ${item.menuTitle}');
-}
-
-void onDismiss() {
-  print('Menu is dismiss');
-}
-
-void gotoAnotherDialog(BuildContext context) {
-  PopupMenu menu = PopupMenu(items: [MenuItem(title: "You are doing well", ),],
-      // onClickMenu: onClickMenu,
-      context: context,
-      // stateChanged: stateChanged,
-      onDismiss: onDismiss);
-  menu.show(widgetKey: btnKey);
-}
-
-void clicked(BuildContext context, menu) {
-  final scaffold = Scaffold.of(context);
-  scaffold.showSnackBar(
-    SnackBar(
-      content: Text(menu),
-      action: SnackBarAction(
-          label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-    ),
-  );
-}
-}
 xyz() => print('xyz function ');
 
 abc() => print('abc function ');
-
