@@ -21,6 +21,7 @@ class GlobalTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final List<TextInputFormatter> inputFormatters;
   final Color hintColor;
+  final bool isBorderTransparent;
 
   const GlobalTextField({
     this.label,
@@ -39,6 +40,7 @@ class GlobalTextField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.hintColor,
+    this.isBorderTransparent,
   })  : assert(hintText != null),
         assert(isLarge != null),
         assert(showField != null),
@@ -72,48 +74,59 @@ class GlobalTextField extends StatelessWidget {
     final int maxLines = obscureText ? 1 : null;
     final int minLines = maxLines ?? (isLarge ? 4 : 1);
 
-    return TextFormField(
-      controller: controller,
-      minLines: minLines,
-      maxLines: maxLines,
-      validator: validator,
-      onChanged: onChanged,
-      initialValue: initialValue,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      style: TextStyles.bodyText1.normal,
-      inputFormatters: inputFormatters,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: hintColor),
-        border: isBorder == true
-            ? OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              )
-            : null,
-        prefixIconConstraints: const BoxConstraints(
-          minHeight: 32.0,
-          minWidth: 32.0,
+    return Container(
+      child: TextFormField(
+        controller: controller,
+        minLines: minLines,
+        maxLines: maxLines,
+        validator: validator,
+        onChanged: onChanged,
+        initialValue: initialValue,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        style: isBorderTransparent == true
+            ? TextStyles.headline4
+            : TextStyles.bodyText1.normal,
+        inputFormatters: inputFormatters,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(color: hintColor),
+          prefixIconConstraints: const BoxConstraints(
+            minHeight: 32.0,
+            minWidth: 32.0,
+          ),
+          focusedBorder: isBorder == true
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  borderSide:
+                      BorderSide(color: Palette.veryLightGrey, width: 1.0),
+                )
+              : UnderlineInputBorder(
+                  borderSide: BorderSide(color: Palette.dialogTextColor),
+                ),
+          enabledBorder: isBorder == true
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  borderSide: BorderSide(
+                      color: isBorderTransparent == true
+                          ? Colors.transparent
+                          : Palette.veryLightGrey,
+                      width: 1.0),
+                )
+              : UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: isBorderTransparent == true
+                          ? Colors.transparent
+                          : Palette.veryLightGrey),
+                ),
+          prefixIcon: icon == null
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: Icon(icon, size: 20.0),
+                ),
         ),
-        focusedBorder: isBorder == true
-            ? OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: Palette.veryLightGrey, width: 2.0),
-              )
-            : null,
-        enabledBorder: isBorder == true
-            ? OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: Palette.veryLightGrey, width: 2.0),
-              )
-            : null,
-        prefixIcon: icon == null
-            ? null
-            : Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                child: Icon(icon, size: 20.0),
-              ),
       ),
     );
   }

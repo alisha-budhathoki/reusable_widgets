@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: TextStyles.caption.withColor(Colors.black).thin,
+          style: TextStyles.headline2.bold.withColor(Palette.warningLightYellow),
         ),
         actions: <Widget>[
           //Setting Overflow action items using PopupMenuButton
@@ -60,14 +60,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Confirmation',
                     content: CourseDialog(),
-                    // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                    baseWidgetDialog: BaseWidgetDialog(
-                      firstContent: null,
-                      secondContent: "DISMISS",
-                      onPressedFirst: abc(),
-                      onPressedSecond: xyz(),
-                      padding: 10,
-                    ),
+                    action1: "",
+                    action2: "DISMISS",
                   ).openDialog(context);
                 },
                 child: Text(
@@ -79,12 +73,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Confirmation',
                     content: ConfirmationDialogWidget(),
-                    // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                    baseWidgetDialog: BaseWidgetDialog(
-                      firstContent: "REVIEW",
-                      secondContent: "SUBMIT",
-                      padding: 10,
-                    ),
+                    action1: "REVIEW",
+                    action2: "SUBMIT",
                   ).openDialog(context);
                 },
                 child: Text(
@@ -94,31 +84,26 @@ class MyHomePage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   GlobalDialog(
-                      title: 'Confirmation',
-                      content: Text(
-                        AppConfig.messageDialog,
-                        style: TextStyles.headline4.medium,
-                      ),
-                      // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                      baseWidgetDialog: BaseWidgetDialog(
-                        firstContent: "SWITCH TO ZOOM",
-                        secondContent: "CONTINUE IN PLATFORM",
-                      )
-                      // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
-                      ).openDialog(context);
+                    title: 'Confirmation',
+                    content: Text(
+                      AppConfig.messageDialog,
+                      style: TextStyles.headline4.medium,
+                    ),
+                    action1: 'SWITCH TO ZOOM',
+                    action2: "CONTINUE IN PLATFORM",
+                    // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
+                  ).openDialog(context);
                 },
                 child: Text('Get alert dialog 3'),
               ),
               RaisedButton(
                 onPressed: () {
                   GlobalDialog(
-                      title: 'Confirmation',
-                      content: FilterWidget(AppConfig.assignementStatusList),
-                      // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                      baseWidgetDialog: BaseWidgetDialog(
-                        firstContent: "CANCEL",
-                        secondContent: "APPLY",
-                      )).openDialog(context);
+                    title: 'Confirmation',
+                    content: FilterWidget(AppConfig.assignementStatusList),
+                    action1: "CANCEL",
+                    action2: "APPLY",
+                  ).openDialog(context);
                 },
                 child: Text(
                   'Get alert dialog 4',
@@ -128,28 +113,21 @@ class MyHomePage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   GlobalDialog(
-                      title: 'Confirmation',
-                      content: FilterWidget(AppConfig.subjectList),
-                      // Text('You have skipped 12 <b>Questions</b>. Do you want to reciew your assignment or submit it?', style: TextStyles.headline4.medium,),
-                      baseWidgetDialog: BaseWidgetDialog(
-                        firstContent: "CANCEL",
-                        secondContent: "APPLY",
-                      )
-                      // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
-                      ).openDialog(context);
+                    title: 'Filters',
+                    content: FilterWidget(AppConfig.subjectList),
+                    action1: "CANCEL",
+                    action2: "APPLY",
+                  ).openDialog(context);
                 },
                 child: Text('Get alert dialog 5'),
               ),
               RaisedButton(
                 onPressed: () {
                   GlobalDialog(
-                      content: FilterAdvancedWidget(),
-                      baseWidgetDialog: BaseWidgetDialog(
-                        firstContent: "CANCEL",
-                        secondContent: "APPLY",
-                      )
-                      // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
-                      ).openDialog(context);
+                    content: FilterAdvancedWidget(),
+                    action1: "CANCEL",
+                    action2: "SUBMT",
+                  ).openDialog(context);
                 },
                 child: Text('Get alert dialog 6'),
               ),

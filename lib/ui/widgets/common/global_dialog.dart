@@ -9,13 +9,40 @@ class GlobalDialog extends PlatformWidget {
   final String title;
   final Widget content;
   final EdgeInsets padding;
-  final baseWidgetDialog;
+  final String action1;
+  final String action2;
 
   GlobalDialog(
-      {Key key, this.title, this.content, this.padding, this.baseWidgetDialog});
+      {Key key, this.title, this.content, this.padding, this.action1, this.action2});
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return AlertDialog(
+  //     title: title == null
+  //         ? Container()
+  //         : Text(
+  //             title,
+  //             style: TextStyles.headline3.semibold,
+  //           ),
+  //     content: content,
+  //     actions: [
+  //       FlatButton(
+  //           onPressed: null,
+  //           child: Text(
+  //             action1,
+  //             style: TextStyles.headline4.withColor(Palette.dialogTextColor),
+  //           )),
+  //       FlatButton(
+  //           onPressed: null,
+  //           child: Text(action2,
+  //               style:
+  //                   TextStyles.headline4.withColor(Palette.dialogTextColor))),
+  //     ],
+  //   );
+  // }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildMaterialWidget(BuildContext context) {
     return AlertDialog(
       title: title == null
           ? Container()
@@ -28,54 +55,20 @@ class GlobalDialog extends PlatformWidget {
         FlatButton(
             onPressed: null,
             child: Text(
-              'SWITCH TO ZOOM',
+              action1,
               style: TextStyles.headline4.withColor(Palette.dialogTextColor),
             )),
         FlatButton(
             onPressed: null,
-            child: Text('CONTINUE IN PLATFORM',
+            child: Text(action2,
                 style:
-                    TextStyles.headline4.withColor(Palette.dialogTextColor))),
-
-        // baseWidgetDialog,
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: GestureDetector(
-        //       onTap: (){
-        //         Navigator.of(context).pop();
-        //       },
-        //       child: Text('DISMISS', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
-        // ),
+                TextStyles.headline4.withColor(Palette.dialogTextColor))),
       ],
     );
   }
 
   @override
   Widget buildCupertinoWidget(BuildContext context) {
-    return AlertDialog(
-      title: title == null
-          ? Container()
-          : Text(
-              title,
-              style: TextStyles.headline3.semibold,
-            ),
-      content: content,
-      actions: [
-        baseWidgetDialog,
-        // Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: GestureDetector(
-        //       onTap: (){
-        //         Navigator.of(context).pop();
-        //       },
-        //       child: Text('DISMISS', style: TextStyles.headline4.withColor(Palette.dialogTextColor),)),
-        // ),
-      ],
-    );
-  }
-
-  @override
-  Widget buildMaterialWidget(BuildContext context) {
     return CupertinoAlertDialog(
       title: title == null
           ? Container()
@@ -85,7 +78,17 @@ class GlobalDialog extends PlatformWidget {
             ),
       content: content,
       actions: [
-        baseWidgetDialog,
+        FlatButton(
+            onPressed: null,
+            child: Text(
+              action1,
+              style: TextStyles.headline4.withColor(Palette.dialogTextColor),
+            )),
+        FlatButton(
+            onPressed: null,
+            child: Text(action2,
+                style:
+                TextStyles.headline4.withColor(Palette.dialogTextColor))),
       ],
     );
   }

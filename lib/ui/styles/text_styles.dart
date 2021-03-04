@@ -17,24 +17,24 @@ class TextStyles {
   );
 
   static final headline2 = _base.copyWith(
-      fontSize: 19.0,
-      letterSpacing: 0.2,
-      fontWeight: FontWeight.w700,
-      fontFamily: AppConfig.fontFamilyTexts,
+    fontSize: 19.0,
+    letterSpacing: 0.2,
+    fontWeight: FontWeight.w700,
+    fontFamily: AppConfig.fontFamilyTexts,
   );
 
   static final headline3 = _base.copyWith(
-      fontSize: 17.0,
-      letterSpacing: 0.2,
-      fontWeight: FontWeight.w400,
-      fontFamily: AppConfig.fontFamilyTexts,
+    fontSize: 17.0,
+    letterSpacing: 0.2,
+    fontWeight: FontWeight.w400,
+    fontFamily: AppConfig.fontFamilyTexts,
   );
 
   static final headline4 = _base.copyWith(
-      fontSize: 16.0,
-      letterSpacing: 0.25,
-      fontWeight: FontWeight.w400,
-      fontFamily: AppConfig.fontFamilyTexts,
+    fontSize: 16.0,
+    letterSpacing: 0.25,
+    fontWeight: FontWeight.w400,
+    fontFamily: AppConfig.fontFamilyTexts,
   );
 
   static final headline5 = _base.copyWith(
@@ -63,10 +63,10 @@ class TextStyles {
     fontFamily: AppConfig.fontFamilyTexts,
   );
   static final button = _base.copyWith(
-      fontSize: 12.0,
-      letterSpacing: 0.2,
-      fontWeight: FontWeight.w400,
-      fontFamily: AppConfig.fontFamilyBtns,
+    fontSize: 12.0,
+    letterSpacing: 0.2,
+    fontWeight: FontWeight.w400,
+    fontFamily: AppConfig.fontFamilyBtns,
   );
 
   static final caption = _base.copyWith(
