@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:class_room/core/constants/configs.dart';
 import 'package:class_room/presentation/pages/textfield_page.dart';
 import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
-import 'package:class_room/ui/widgets/common/base_widget_dialog.dart';
 import 'package:class_room/ui/widgets/common/global_bottom_sheet.dart';
 import 'package:class_room/ui/widgets/common/global_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/alert_dialog_widgets/confirmation_dialog_widget.dart';
@@ -20,6 +17,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/core/extensions/dialog_helper.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyHomePage extends StatelessWidget {
   final String title;
@@ -35,7 +33,8 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: TextStyles.headline2.bold.withColor(Palette.warningLightYellow),
+          style:
+              TextStyles.headline2.bold.withColor(Palette.warningLightYellow),
         ),
         actions: <Widget>[
           //Setting Overflow action items using PopupMenuButton
@@ -199,7 +198,15 @@ class MyHomePage extends StatelessWidget {
                   'Goto Textfield classes',
                 ),
               ),
-              SizedBox(height: 50)
+              SizedBox(height: 50),
+              Text(
+                "practice",
+                style: TextStyles.bodyText2.withColor(Colors.black),
+              ),
+              Text(
+                "practice",
+                style: GoogleFonts.openSans(fontSize: 24),
+              )
             ],
           ),
         ),

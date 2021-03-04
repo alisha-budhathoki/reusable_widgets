@@ -10,40 +10,69 @@ class FeedbackFirstDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 180,
-      child: GridView.builder(
-        itemCount: textContents.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 5.0 / 5.0,
-          crossAxisCount: 2,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-              padding: EdgeInsets.all(5),
-              child: Card(
-                  elevation: 5,
-                  semanticContainer: true,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.image,
-                        size: 50,
-                      ),
-                      Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: 160,
+            child: Card(
+                elevation: 5,
+                semanticContainer: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.image,
+                      size: 30,
+                    ),
+                    Container(
                         width: 130,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                        textContents[index],
-                        textAlign: TextAlign.center,
-                      ))
-                    ],
-                  )));
-        },
-      ),
+                            "Upload jpg, jpeg, png files only",
+                            textAlign: TextAlign.center,
+                          ),
+                        ))
+                  ],
+                )),
+          ),
+          Container(
+            height: 160,
+            child: Card(
+                elevation: 5,
+                semanticContainer: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.copy,
+                      size: 30,
+                    ),
+                    Container(
+                        width: 130,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            "Upload pdf, ppt, pptx, doc, Xls, xlsx, ipynb, txt files only",
+                            textAlign: TextAlign.center,
+                          ),
+                        ))
+                  ],
+                )),
+          )
+        ],
+      )
     );
   }
 }
