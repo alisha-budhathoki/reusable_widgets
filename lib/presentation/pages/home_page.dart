@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:class_room/core/constants/configs.dart';
+import 'package:class_room/presentation/pages/textfield_page.dart';
 import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:class_room/ui/widgets/common/base_widget_dialog.dart';
@@ -211,15 +212,19 @@ class MyHomePage extends StatelessWidget {
                   'Popup',
                 ),
               ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TextfieldPage()));
+                },
+                child: Text(
+                  'Goto Textfield classes',
+                ),
+              ),
               SizedBox(height: 50)
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Palette.neutralGrey,
-        onPressed: null,
-        child: Icon(Icons.add),
       ),
     );
   }
@@ -248,17 +253,6 @@ class MyHomePage extends StatelessWidget {
         // stateChanged: stateChanged,
         onDismiss: onDismiss);
     menu.show(widgetKey: btnKey);
-  }
-
-  void clicked(BuildContext context, menu) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: Text(menu),
-        action: SnackBarAction(
-            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-      ),
-    );
   }
 }
 

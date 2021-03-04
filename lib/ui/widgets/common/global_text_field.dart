@@ -2,6 +2,7 @@ import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:class_room/ui/styles/style_extension.dart';
 
 class GlobalTextField extends StatelessWidget {
   final String label;
@@ -19,6 +20,7 @@ class GlobalTextField extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
   final List<TextInputFormatter> inputFormatters;
+  final Color hintColor;
 
   const GlobalTextField({
     this.label,
@@ -36,6 +38,7 @@ class GlobalTextField extends StatelessWidget {
     this.showField = true,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.hintColor,
   })  : assert(hintText != null),
         assert(isLarge != null),
         assert(showField != null),
@@ -48,10 +51,7 @@ class GlobalTextField extends StatelessWidget {
       children: [
         _buildLabel(context),
         if (middleChild != null) middleChild,
-        if (showField) ...[
-          if (middleChild == null) const SizedBox(height: 8.0),
-          _buildField(context),
-        ],
+        _buildField(context),
       ],
     );
   }
@@ -61,7 +61,10 @@ class GlobalTextField extends StatelessWidget {
         ? Container()
         : Text(
             label,
-            style: labelStyle ?? TextStyles.headline5,
+            style: labelStyle ??
+                TextStyles.headline6
+                    .withColor(Palette.dialogTextColor)
+                    .semibold,
           );
   }
 
@@ -78,30 +81,39 @@ class GlobalTextField extends StatelessWidget {
       initialValue: initialValue,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      style: TextStyles.headline5,
+      style: TextStyles.bodyText1.normal,
       inputFormatters: inputFormatters,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
         hintText: hintText,
-        border: isBorder==true?OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        ):null,
+        hintStyle: TextStyle(color: hintColor),
+        border: isBorder == true
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              )
+            : null,
         prefixIconConstraints: const BoxConstraints(
           minHeight: 32.0,
           minWidth: 32.0,
         ),
-        focusedBorder: isBorder == true?OutlineInputBorder(
-          borderSide: BorderSide(color: Palette.veryLightGrey, width: 2.0),
-        ):null,
-        enabledBorder: isBorder == true?OutlineInputBorder(
-          borderSide: BorderSide(color: Palette.veryLightGrey, width: 2.0),
-        ):null,
+        focusedBorder: isBorder == true
+            ? OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: Palette.veryLightGrey, width: 2.0),
+              )
+            : null,
+        enabledBorder: isBorder == true
+            ? OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: Palette.veryLightGrey, width: 2.0),
+              )
+            : null,
         prefixIcon: icon == null
             ? null
             : Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: Icon(icon, size: 20.0),
-        ),
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Icon(icon, size: 20.0),
+              ),
       ),
     );
   }
