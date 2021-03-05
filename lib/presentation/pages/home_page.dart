@@ -199,7 +199,10 @@ class MyHomePage extends StatelessWidget {
                   'Goto Textfield classes',
                 ),
               ),
-              SizedBox(height: 50)
+              SizedBox(height: 50),
+              Text('Alisha', style: TextStyles.headline1.medium.withSize(50).withColor(Colors.black),),
+              Text('Alisha', style: TextStyles.button.medium.withSize(50).withColor(Colors.black),),
+              SizedBox(height: 50),
             ],
           ),
         ),

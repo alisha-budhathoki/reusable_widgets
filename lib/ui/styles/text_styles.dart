@@ -12,6 +12,7 @@ class TextStyles {
 
   static final headline1 = _base.copyWith(
     fontSize: 24.0,
+    letterSpacing: 0.5,
     fontWeight: FontWeight.w900,
     fontFamily: AppConfig.fontFamilyTexts,
   );
@@ -82,3 +83,4 @@ class TextStyles {
     fontFamily: AppConfig.fontFamilyTexts,
   );
 }
+//changes here
