@@ -1,9 +1,11 @@
 import 'package:class_room/core/constants/configs.dart';
+import 'package:class_room/core/locator.dart';
 import 'package:class_room/presentation/pages/textfield_page.dart';
 import 'package:class_room/ui/styles/color_palette.dart';
 import 'package:class_room/ui/styles/text_styles.dart';
 import 'package:class_room/ui/widgets/common/global_bottom_sheet.dart';
 import 'package:class_room/ui/widgets/common/global_dialog.dart';
+import 'package:class_room/ui/widgets/common/tooltip_shape_border.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/alert_dialog_widgets/confirmation_dialog_widget.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/alert_dialog_widgets/course_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/alert_dialog_widgets/filter_advanced_widget.dart';
@@ -12,19 +14,19 @@ import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/adenda_
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/agenda_takeaway_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/feedback_first_dialog.dart';
 import 'package:class_room/ui/widgets/popup_dialogs/bottom_sheet_widgets/feedback_second_dialog.dart';
-import 'package:class_room/ui/widgets/popup_dialogs/popup_traingular/popup_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:class_room/core/extensions/dialog_helper.dart';
 import 'package:class_room/ui/styles/style_extension.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class MyHomePage extends StatelessWidget {
   final String title;
 
   MyHomePage({Key key, @required this.title}) : super(key: key);
-  PopupMenu menu;
   GlobalKey btnKey = GlobalKey();
+  final DialogService _dialogService = locator();
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +61,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Confirmation',
                     content: CourseDialog(),
-                    action1: "",
-                    action2: "DISMISS",
+                    firstActionValue: "",
+                    secondActionValue: "DISMISS",
                   ).openDialog(context);
                 },
                 child: Text(
@@ -72,8 +74,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Confirmation',
                     content: ConfirmationDialogWidget(),
-                    action1: "REVIEW",
-                    action2: "SUBMIT",
+                    firstActionValue: "REVIEW",
+                    secondActionValue: "SUBMIT",
                   ).openDialog(context);
                 },
                 child: Text(
@@ -83,13 +85,16 @@ class MyHomePage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   GlobalDialog(
+                    //todo: function passing
                     title: 'Confirmation',
                     content: Text(
                       AppConfig.messageDialog,
                       style: TextStyles.headline4.medium,
                     ),
-                    action1: 'SWITCH TO ZOOM',
-                    action2: "CONTINUE IN PLATFORM",
+                    //Todo: action name change
+
+                    firstActionValue: 'SWITCH TO ZOOM',
+                    secondActionValue: "CONTINUE IN PLATFORM",
                     // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
                   ).openDialog(context);
                 },
@@ -100,8 +105,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Confirmation',
                     content: FilterWidget(AppConfig.assignementStatusList),
-                    action1: "CANCEL",
-                    action2: "APPLY",
+                    firstActionValue: "CANCEL",
+                    secondActionValue: "APPLY",
                   ).openDialog(context);
                 },
                 child: Text(
@@ -114,8 +119,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     title: 'Filters',
                     content: FilterWidget(AppConfig.subjectList),
-                    action1: "CANCEL",
-                    action2: "APPLY",
+                    firstActionValue: "CANCEL",
+                    secondActionValue: "APPLY",
                   ).openDialog(context);
                 },
                 child: Text('Get alert dialog 5'),
@@ -124,8 +129,8 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   GlobalDialog(
                     content: FilterAdvancedWidget(),
-                    action1: "CANCEL",
-                    action2: "SUBMT",
+                    firstActionValue: "CANCEL",
+                    secondActionValue: "SUBMT",
                   ).openDialog(context);
                 },
                 child: Text('Get alert dialog 6'),
@@ -180,13 +185,20 @@ class MyHomePage extends StatelessWidget {
                 },
                 child: Text('Get bottomsheet dialog4'),
               ),
-              RaisedButton(
-                onPressed: () {
-                  gotoAnotherDialog(context);
-                },
-                key: btnKey,
-                child: Text(
-                  'Popup',
+              Tooltip(
+                textStyle: TextStyles.headline6.withColor(Palette.white).bold,
+                message: "You are doing well",
+                child: Text('null'),
+                padding: EdgeInsets.all(10),
+                decoration: ShapeDecoration(
+                  color: Palette.darkTextColor,
+                  shape: TooltipShapeBorder(),
+                  shadows: [
+                    BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4.0,
+                        offset: Offset(2, 2))
+                  ],
                 ),
               ),
               RaisedButton(
@@ -206,38 +218,23 @@ class MyHomePage extends StatelessWidget {
               Text(
                 "practice",
                 style: GoogleFonts.openSans(fontSize: 24),
+              ),
+              RaisedButton(
+
+                onPressed: () async => await _dialogService.showDialog(
+                    title: 'The Basic Dialog',
+                    description:
+                    'This is the description for the dialog that shows up under the title',
+                    buttonTitle: 'Main title',
+                    cancelTitle: 'Cancel',
+                  ),
+                child: Text('open service dialog')
               )
             ],
           ),
         ),
       ),
     );
-  }
-
-  void stateChanged(bool isShow) {
-    print('menu is ${isShow ? 'showing' : 'closed'}');
-  }
-
-  void onClickMenu(MenuItemProvider item) {
-    print('Click menu -> ${item.menuTitle}');
-  }
-
-  void onDismiss() {
-    print('Menu is dismiss');
-  }
-
-  void gotoAnotherDialog(BuildContext context) {
-    PopupMenu menu = PopupMenu(
-        items: [
-          MenuItem(
-            title: "You are doing well",
-          ),
-        ],
-        // onClickMenu: onClickMenu,
-        context: context,
-        // stateChanged: stateChanged,
-        onDismiss: onDismiss);
-    menu.show(widgetKey: btnKey);
   }
 }
 

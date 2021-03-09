@@ -22,6 +22,8 @@ class GlobalTextField extends StatelessWidget {
   final List<TextInputFormatter> inputFormatters;
   final Color hintColor;
   final bool isBorderTransparent;
+  final bool isChangeLabelColor;
+
 
   const GlobalTextField({
     this.label,
@@ -41,6 +43,7 @@ class GlobalTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.hintColor,
     this.isBorderTransparent,
+    this.isChangeLabelColor
   })  : assert(hintText != null),
         assert(isLarge != null),
         assert(showField != null),
@@ -65,7 +68,7 @@ class GlobalTextField extends StatelessWidget {
             label,
             style: labelStyle ??
                 TextStyles.headline6
-                    .withColor(Palette.dialogTextColor)
+                    .withColor(isChangeLabelColor?Palette.dialogTextColor:Colors.red)
                     .semibold,
           );
   }

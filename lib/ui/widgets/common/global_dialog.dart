@@ -9,11 +9,12 @@ class GlobalDialog extends PlatformWidget {
   final String title;
   final Widget content;
   final EdgeInsets padding;
-  final String action1;
-  final String action2;
+  final String firstActionValue;
+  final String secondActionValue;
+
 
   GlobalDialog(
-      {Key key, this.title, this.content, this.padding, this.action1, this.action2});
+      {Key key, this.title, this.content, this.padding, this.firstActionValue, this.secondActionValue});
 
 
   @override
@@ -30,12 +31,12 @@ class GlobalDialog extends PlatformWidget {
         FlatButton(
             onPressed: null,
             child: Text(
-              action1,
+              firstActionValue,
               style: TextStyles.headline4.withColor(Palette.dialogTextColor),
             )),
         FlatButton(
             onPressed: null,
-            child: Text(action2,
+            child: Text(secondActionValue,
                 style:
                 TextStyles.headline4.withColor(Palette.dialogTextColor))),
       ],
@@ -56,12 +57,12 @@ class GlobalDialog extends PlatformWidget {
         FlatButton(
             onPressed: null,
             child: Text(
-              action1,
+              firstActionValue,
               style: TextStyles.headline4.withColor(Palette.dialogTextColor),
             )),
         FlatButton(
             onPressed: null,
-            child: Text(action2,
+            child: Text(secondActionValue,
                 style:
                 TextStyles.headline4.withColor(Palette.dialogTextColor))),
       ],

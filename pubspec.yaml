@@ -13,6 +13,15 @@ dependencies:
   cupertino_icons: ^1.0.0
   google_fonts: ^1.1.2
   device_preview: ^0.5.5
+  simple_tooltip: ^0.1.16
+  dio: ^3.0.9
+  permission_handler: ^5.0.0+hotfix.5
+  stacked: ^1.7.1
+  flutter_bloc: ^6.1.1
+  stacked_services: ^0.6.0
+  get_it:
+  injectable:
+
 
 dev_dependencies:
   flutter_test:
