@@ -5,9 +5,9 @@ import 'package:class_room/ui/styles/style_extension.dart';
 
 class CourseDialogContent extends StatelessWidget {
   final String firstContent;
-  final List<String> namesInstructor;
+  final List<String> firstContentValues;
 
-  CourseDialogContent(this.firstContent, this.namesInstructor);
+  CourseDialogContent(this.firstContent, this.firstContentValues);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,12 @@ class CourseDialogContent extends StatelessWidget {
             width: 100,
             child: Text(
               firstContent,
-              style: TextStyles.headline4.medium,
+              style: TextStyles.bodyText1.medium,
             )),
         Container(
           width: 90,
-          // color: Colors.blue,
           child: Wrap(
-            children: getTexts(namesInstructor),
+            children: getTexts(firstContentValues),
           ),
         )
       ],
@@ -32,7 +31,6 @@ class CourseDialogContent extends StatelessWidget {
   }
 
   List<Widget> getTexts(List<String> names) {
-    // print(names.indexOf(e));
     return names
         .asMap()
         .map((i, element) {
@@ -41,7 +39,7 @@ class CourseDialogContent extends StatelessWidget {
               i,
               Text(
                 isLast ? element : element + ", ",
-                style: TextStyles.headline4.normal,
+                style: TextStyles.bodyText1.normal,
               ));
         })
         .values

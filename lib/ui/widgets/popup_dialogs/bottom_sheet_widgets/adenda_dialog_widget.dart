@@ -10,7 +10,7 @@ class AgendaDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 130,
       child: ListView.builder(
           itemCount: listItems.length,
           itemBuilder: (context, index) {

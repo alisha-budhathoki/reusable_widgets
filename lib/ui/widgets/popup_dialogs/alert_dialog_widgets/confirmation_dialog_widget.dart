@@ -11,14 +11,14 @@ class ConfirmationDialogWidget extends StatelessWidget {
         children: [
           TextSpan(
               text: 'You have skipped ',
-              style: TextStyles.headline4.medium),
+              style: TextStyles.bodyText1.medium),
           TextSpan(
               text: '12 Questions. ',
-              style: TextStyles.headline4.bold),
+              style: TextStyles.bodyText1.bold),
           TextSpan(
               text:
               'Do you want to review your assignment or submit it?',
-              style: TextStyles.headline4.medium)
+              style: TextStyles.bodyText1.medium)
         ],
       ),
     );

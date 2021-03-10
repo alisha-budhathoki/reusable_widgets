@@ -32,8 +32,9 @@ class _FilterWidgetState extends State<FilterWidget> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return CheckboxListTile(
+            contentPadding: EdgeInsets.all(0),
             controlAffinity: ListTileControlAffinity.leading,
-            title: Text(items[index], style: TextStyles.headline3.normal,),
+            title: Text(items[index], style: TextStyles.headline4.normal,),
             value: _isChecked[index],
             onChanged: (val) {
               setState(

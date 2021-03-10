@@ -39,15 +39,17 @@ class MyHomePage extends StatelessWidget {
               TextStyles.headline2.bold.withColor(Palette.warningLightYellow),
         ),
         actions: <Widget>[
-          //Setting Overflow action items using PopupMenuButton
-          PopupMenuButton(
+          PopupMenuButton<String>(
+            onSelected: handleClick,
             itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(child: Text('Download')),
-                PopupMenuItem(child: Text('Delete file')),
-              ];
+              return {'Download', 'Delete file'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
             },
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -58,12 +60,24 @@ class MyHomePage extends StatelessWidget {
             children: [
               RaisedButton(
                 onPressed: () {
-                  GlobalDialog(
-                    title: 'Confirmation',
-                    content: CourseDialog(),
-                    firstActionValue: "",
-                    secondActionValue: "DISMISS",
-                  ).openDialog(context);
+                  showDialog(
+                      context: context,
+                      child: GlobalDialog(
+                        title: 'Confirmation',
+                        content: CourseDialog(),
+                        firstActionValue: "",
+                        secondActionValue: "DISMISS",
+                        firstActionPressed: () {},
+                        secondActionPressed: () {},
+                      ));
+                  // GlobalDialog(
+                  //   title: 'Confirmation',
+                  //   content: CourseDialog(),
+                  //   firstActionValue: "",
+                  //   secondActionValue: "DISMISS",
+                  //   firstActionPressed: () {},
+                  //   secondActionPressed: () {},
+                  // ).openDialog(context);
                 },
                 child: Text(
                   'Get alert dialog 1',
@@ -89,12 +103,12 @@ class MyHomePage extends StatelessWidget {
                     title: 'Confirmation',
                     content: Text(
                       AppConfig.messageDialog,
-                      style: TextStyles.headline4.medium,
+                      style: TextStyles.bodyText1.normal,
                     ),
-                    //Todo: action name change
-
                     firstActionValue: 'SWITCH TO ZOOM',
                     secondActionValue: "CONTINUE IN PLATFORM",
+                    firstActionPressed: _firstActionPressed,
+                    secondActionPressed: _secondActionPressed,
                     // BaseWidgetDialog("SWITCH TO ZOOM", "CONTINUE IN PLATFORM", xyz(), abc()),
                   ).openDialog(context);
                 },
@@ -130,7 +144,7 @@ class MyHomePage extends StatelessWidget {
                   GlobalDialog(
                     content: FilterAdvancedWidget(),
                     firstActionValue: "CANCEL",
-                    secondActionValue: "SUBMT",
+                    secondActionValue: "SUBMIT",
                   ).openDialog(context);
                 },
                 child: Text('Get alert dialog 6'),
@@ -144,7 +158,8 @@ class MyHomePage extends StatelessWidget {
                   GlobalBottomSheet(
                     title: "Feedback",
                     content: Text(AppConfig.contentBottomSheet,
-                        style: TextStyles.bodyText1.normal,
+                        style: TextStyles.bodyText1.normal
+                            .withColor(Palette.neutralGrey),
                         textAlign: TextAlign.left),
                   ).openBottomDialog(context);
                 },
@@ -220,21 +235,36 @@ class MyHomePage extends StatelessWidget {
                 style: GoogleFonts.openSans(fontSize: 24),
               ),
               RaisedButton(
-
-                onPressed: () async => await _dialogService.showDialog(
-                    title: 'The Basic Dialog',
-                    description:
-                    'This is the description for the dialog that shows up under the title',
-                    buttonTitle: 'Main title',
-                    cancelTitle: 'Cancel',
-                  ),
-                child: Text('open service dialog')
-              )
+                  onPressed: () async => await _dialogService.showDialog(
+                        title: 'The Basic Dialog',
+                        description:
+                            'This is the description for the dialog that shows up under the title',
+                        buttonTitle: 'Main title',
+                        cancelTitle: 'Cancel',
+                      ),
+                  child: Text('open service dialog'))
             ],
           ),
         ),
       ),
     );
+  }
+
+  _firstActionPressed() {
+    print('snnsndbjsb');
+  }
+
+  _secondActionPressed() {
+    print('pressed action');
+  }
+
+  void handleClick(String value) {
+    switch (value) {
+      case 'Download':
+        break;
+      case 'Delete file':
+        break;
+    }
   }
 }
 

@@ -6,19 +6,19 @@ import 'package:flutter/rendering.dart';
 
 class BaseWidgetDialog extends StatelessWidget {
   final String firstContent, secondContent;
-  final Function onPressedFirst, onPressedSecond;
+  final Function() onPressedFirstOption, onPressedSecondOption;
   final double padding;
   final bool fromBottomDialog;
 
-  const BaseWidgetDialog(
-      {Key key,
-      this.firstContent,
-      this.secondContent,
-      this.onPressedFirst,
-      this.onPressedSecond,
-      this.padding,
-      this.fromBottomDialog})
-      : super(key: key);
+  const BaseWidgetDialog({
+    Key key,
+    this.firstContent,
+    this.secondContent,
+    this.onPressedFirstOption,
+    this.onPressedSecondOption,
+    this.padding,
+    this.fromBottomDialog,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,24 @@ class BaseWidgetDialog extends StatelessWidget {
           : MainAxisAlignment.center,
       children: [
         FlatButton(
+          onPressed: onPressedFirstOption,
           child: firstContent == null
               ? Container()
               : Text(firstContent,
-                  style: TextStyles.headline4
-                      .withColor(Palette.dialogTextColor)),
+                  style: TextStyles.bodyText1
+                      .withColor(Palette.colorPrimary)
+                      .semibold),
         ),
         FlatButton(
+          onPressed: onPressedSecondOption,
           child: secondContent == null
               ? Container()
-              : Text(secondContent,
-                  style: TextStyles.headline4
-                      .withColor(Palette.dialogTextColor)),
+              : Text(
+                  secondContent,
+                  style: TextStyles.bodyText1
+                      .withColor(Palette.colorPrimary)
+                      .semibold,
+                ),
         ),
       ],
     );

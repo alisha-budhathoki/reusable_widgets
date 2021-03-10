@@ -11,11 +11,19 @@ class GlobalDialog extends PlatformWidget {
   final EdgeInsets padding;
   final String firstActionValue;
   final String secondActionValue;
+  final Function() firstActionPressed;
+  final Function() secondActionPressed;
 
-
-  GlobalDialog(
-      {Key key, this.title, this.content, this.padding, this.firstActionValue, this.secondActionValue});
-
+  GlobalDialog({
+    Key key,
+    this.title,
+    this.content,
+    this.padding,
+    this.firstActionValue,
+    this.secondActionValue,
+    this.firstActionPressed,
+    this.secondActionPressed,
+  });
 
   @override
   Widget buildMaterialWidget(BuildContext context) {
@@ -24,21 +32,30 @@ class GlobalDialog extends PlatformWidget {
           ? Container()
           : Text(
               title,
-              style: TextStyles.headline3.semibold,
+              style: TextStyles.headline4.semibold
+                  .withColor(Palette.darkTextColor),
             ),
       content: content,
       actions: [
         FlatButton(
-            onPressed: null,
+            onPressed: () {
+              Navigator.pop(context);
+              firstActionPressed();
+            },
             child: Text(
               firstActionValue,
-              style: TextStyles.headline4.withColor(Palette.dialogTextColor),
+              style:
+                  TextStyles.bodyText1.withColor(Palette.colorPrimary).semibold,
             )),
         FlatButton(
-            onPressed: null,
+            onPressed: () {
+              Navigator.pop(context);
+              secondActionPressed();
+            },
             child: Text(secondActionValue,
-                style:
-                TextStyles.headline4.withColor(Palette.dialogTextColor))),
+                style: TextStyles.bodyText1
+                    .withColor(Palette.colorPrimary)
+                    .semibold)),
       ],
     );
   }
@@ -58,13 +75,16 @@ class GlobalDialog extends PlatformWidget {
             onPressed: null,
             child: Text(
               firstActionValue,
-              style: TextStyles.headline4.withColor(Palette.dialogTextColor),
+              style: TextStyles.headline4
+                  .withColor(Palette.dialogTextColor)
+                  .semibold,
             )),
         FlatButton(
             onPressed: null,
             child: Text(secondActionValue,
-                style:
-                TextStyles.headline4.withColor(Palette.dialogTextColor))),
+                style: TextStyles.headline4
+                    .withColor(Palette.dialogTextColor)
+                    .semibold)),
       ],
     );
   }

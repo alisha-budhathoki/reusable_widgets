@@ -19,13 +19,13 @@ class FilterAdvancedWidget extends StatelessWidget {
       child: Column(
         children: [
           Align(alignment: Alignment.centerLeft,child: Text('Filters',style: TextStyles.headline3.semibold,)),
-          Container(height: 170,child: FilterWidget(checboxContents1)),
-          SizedBox(height: 10,),
+          Container(height: 170,child: FilterWidget(checboxContents1),alignment: Alignment.centerLeft,),
+          SizedBox(height: 20,),
           Align(alignment: Alignment.centerLeft,child: Text('Course', style: TextStyles.headline3.semibold)),
           DropdownWidget(),
-          SizedBox(height: 10,),
+          SizedBox(height: 20,),
           Align(alignment: Alignment.centerLeft,child: Text('Assignment Types', style: TextStyles.headline3.semibold,)),
-          Container(height: 230,child: FilterWidget(checboxContents2)),
+          Container(height: 230,child: FilterWidget(checboxContents2), alignment: Alignment.centerLeft,),
         ],
       ),
     );

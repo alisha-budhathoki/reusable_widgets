@@ -17,13 +17,23 @@ class FeedbackSecondDialog extends StatelessWidget {
               isBorder: true,
               hintText: "Message Title",
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             GlobalTextField(
                 isBorder: true,
                 isLarge: true,
                 hintColor: Palette.hintLightGrey,
                 hintText: "Type your message here..."),
-            BaseWidgetDialog(firstContent: "CANCEL",secondContent: "SEND FEEDBACK",fromBottomDialog: true,)
+            BaseWidgetDialog(
+              firstContent: "CANCEL",
+              secondContent: "SEND FEEDBACK",
+              onPressedFirstOption: () {
+                Navigator.pop(context);
+              },
+              onPressedSecondOption: () {},
+              fromBottomDialog: true,
+            )
           ],
         ),
       ),

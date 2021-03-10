@@ -6,29 +6,37 @@ import 'package:class_room/ui/styles/style_extension.dart';
 class GlobalBottomSheet extends StatelessWidget {
   final String title;
   final Widget content;
-  const GlobalBottomSheet(
-      {Key key, this.title, this.content, })
-      : super(key: key);
-  // String content =
-  //     "The following code demonstrates how to call a platform-specific API to retrieve and display the current battery level. First, follow the local setup section described in ‘Local setup’ to make sure the process works before migrating onto a cloud system like Travis.";
 
+  const GlobalBottomSheet({
+    Key key,
+    this.title,
+    this.content,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Wrap(
       children: [
         new ListTile(
+            contentPadding: EdgeInsets.all(0),
             tileColor: Palette.primaryLightGreen,
-            title: new Text(
-              title,
-              style: TextStyles.headline2.semibold,
+            title: Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Text(
+                title,
+                style: TextStyles.headline2.semibold
+                    .withColor(Palette.darkTextColor),
+              ),
             ),
-            trailing: new Icon(Icons.close),
-            onTap: () => {}),
+            trailing: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Icon(Icons.close),
+            ),
+            onTap: () => {Navigator.pop(context)}),
         Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: content
-        )
+            padding: const EdgeInsets.only(
+                top: 20.0, left: 30, right: 30, bottom: 35),
+            child: content)
       ],
     ));
   }

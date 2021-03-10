@@ -28,7 +28,8 @@ class AppConfig {
     "Consider both internal and external actions...",
     "Ravi",
     "Manoj",
-    "Kripa"
+    "Kripa",
+    "The following code demonstrates how to call a platform-specific API to retrieve and display the current battery level. It uses the Android BatteryManager API, and the iOS device.batteryLevel API, via a single platform message, getBatteryLevel().",
   ];
 
   static const List<String> takeawayList = [
