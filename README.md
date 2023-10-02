@@ -1,5 +1,3 @@
-# class_room
-
 A new Flutter application.
 
 ## Getting Started
